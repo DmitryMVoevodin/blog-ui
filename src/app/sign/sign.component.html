@@ -1,0 +1,20 @@
+<div class = "TableOfSignIn">
+
+  <h2>Вход</h2>
+
+  <table>
+    <tr>
+      <td>Логин: </td>
+      <td><input [(ngModel)]="user.userLogin" placeholder=""/></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Пароль: </td>
+      <td><input type="password" [(ngModel)]="user.userPassword" placeholder=""/></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <button (click)="enterBlog(user.userLogin, user.userPassword)">Войти</button>
+
+</div>

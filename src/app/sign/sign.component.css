@@ -1,0 +1,55 @@
+.TableOfSignIn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 20px;
+  background-color: lightpink;
+  alignment: center;
+  width: 500px;
+  height: 210px;
+  border: 4px solid deeppink;
+}
+.TableOfSignIn h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: deeppink;
+  font-family: "Comic Sans MS";
+}
+.TableOfSignIn table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
+  alignment: center;
+  color: deeppink;
+  font-family: "Comic Sans MS";
+}
+.TableOfSignIn button {
+  display: inline-block;
+  padding: 10px 10px;
+  margin-left: 175px;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: hotpink;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+  width: 150px;
+  font-family: "Comic Sans MS"
+}
+.TableOfSignIn button:hover {
+  background-color: deeppink;
+}
+.TableOfSignIn button:active {
+  background-color: darkviolet;
+  box-shadow: 0 2px #666;
+  transform: translateY(2px);
+}

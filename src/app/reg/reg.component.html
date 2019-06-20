@@ -1,0 +1,50 @@
+<div class = "TableOfRegistration">
+
+  <h2>Регистрация</h2>
+
+  <table>
+    <tr>
+      <td>Фамилия: </td>
+      <td><input [(ngModel)]="user.userLastName" placeholder="Иванов"/></td>
+      <td class = "Validation">{{userV.userLastNameValidation}}</td>
+    </tr>
+    <tr>
+      <td>Имя: </td>
+      <td><input [(ngModel)]="user.userFirstName" placeholder="Иван"/></td>
+      <td class = "Validation">{{userV.userFirstNameValidation}}</td>
+    </tr>
+    <tr>
+      <td>Отчество: </td>
+      <td><input [(ngModel)]="user.userMiddleName" placeholder="Иванович"/></td>
+      <td class = "Validation">{{userV.userMiddleNameValidation}}</td>
+    </tr>
+    <tr>
+      <td>E-mail: </td>
+      <td><input [(ngModel)]="user.userMail" placeholder="ivanov@mail.ru"/></td>
+      <td class = "Validation">{{userV.userMailValidation}}</td>
+    </tr>
+    <tr>
+      <td>Телефон: </td>
+      <td><input [(ngModel)]="user.userPhone" placeholder="+79024563377"/></td>
+      <td class = "Validation">{{userV.userPhoneValidation}}</td>
+    </tr>
+    <tr>
+      <td>Логин: </td>
+      <td><input [(ngModel)]="user.userLogin" placeholder="ivan78ssh"/></td>
+      <td class = "Validation">{{userV.userLoginValidation}}</td>
+    </tr>
+    <tr>
+      <td>Пароль: </td>
+      <td><input type="password" [(ngModel)]="user.userPassword" placeholder="sajj#JKJx876sb"/></td>
+      <td class = "Validation">{{userV.userPasswordValidation}}</td>
+    </tr>
+    <tr>
+      <td>Никнэйм: </td>
+      <td><input [(ngModel)]="user.userNickName" placeholder="Иванушка"/></td>
+      <td class = "Validation">{{userV.userNickNameValidation}}</td>
+    </tr>
+  </table>
+
+  <button (click)="registerAndEnterBlog()">Принять</button>
+
+</div>
