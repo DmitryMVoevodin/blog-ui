@@ -123,6 +123,12 @@ export class RegComponent implements OnInit {
     } else if (this.user.userPhone.length > 20) {
       isValid = false;
       this.userV.userPhoneValidation = 'Поле не должно быть > 20 символов!';
+    } else {
+      var regPhone = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+      if (!regPhone.test(this.user.userPhone)) {
+        isValid = false;
+        this.userV.userPhoneValidation = 'Номер телефона введен некорректно!';
+      }
     }
 
     //Логин

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-firstpage',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirstpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public enterPage(): void {
+    this.router.navigate(['auth/sign_in']);
+  }
+
+  public registrationPage(): void {
+    this.router.navigate(['auth/registration']);
   }
 
 }
