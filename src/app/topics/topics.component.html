@@ -1,3 +1,55 @@
-<p>
-  topics works!
-</p>
+<mat-toolbar color="primary" class="navbar">
+  <div>{{user.userNickName}}</div>
+  <div>
+    <button mat-stroked-button *ngIf="user.userAdmin" (click)="adminUserPage()">
+      Пользователи
+      <mat-icon>person</mat-icon>
+    </button>
+    <button mat-stroked-button [matBadge]="countOfTopicsForAdmin" matBadgeColor="warn" [matBadgeHidden]="countOfTopicsForAdmin === 0"
+            *ngIf="user.userAdmin" (click)="adminTopicPage()">
+      Регистрация разделов
+      <mat-icon>build</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="addingArticlePage()">
+      Добавить раздел
+      <mat-icon>note_add</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="exitFromBlog()">
+      Выйти
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let topic of topics">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <div class = "TitleOfTopic">{{topic.topicId}}. {{topic.topicTitle}}</div>
+      </mat-panel-title>
+      <mat-panel-description>
+        <div class = "DescriptionOfTopicComment">{{topic.topicComment}}</div>
+      </mat-panel-description>
+      <mat-panel-description>
+        <div class = "DescriptionOfTopicCreator">Автор раздела: {{topic.topicCreator.userNickName}}</div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <app-articles [topicId]="topic.topicId"></app-articles>
+
+    <mat-action-row>
+      <div class="MatActionRowForTopic">
+        <button mat-stroked-button *ngIf="topic.topicCreator.userId == user.userId" (click)="deleteTopic(topic)">
+          Удалить раздел
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-stroked-button (click)="addNewArticle(topic)">
+          Добавить статью
+          <mat-icon>note_add</mat-icon>
+        </button>
+      </div>
+    </mat-action-row>
+
+  </mat-expansion-panel>
+</mat-accordion>

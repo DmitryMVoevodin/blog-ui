@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>{{user.userNickName}}</div>
+  <div>
+    <button mat-stroked-button (click)="returnToTopics()">
+      Разделы
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="exitFromBlog()">
+      Выйти
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="InputFields">
+  <table>
+    <tr>
+      <td>
+        <div class="ButtonPanel">
+          <button mat-stroked-button (click)="addTopic()">Добавить раздел <mat-icon>note_add</mat-icon></button>
+          <button mat-stroked-button (click)="returnToTopics()">Отмена <mat-icon>cancel</mat-icon></button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline" class="TopicTitle">
+          <mat-label>Введите название раздела</mat-label>
+          <input [(ngModel)]="newTopic.topicTitle" matInput required/>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline" class="TopicComment">
+          <mat-label>Введите комментарий</mat-label>
+          <textarea [(ngModel)]="newTopic.topicComment" matInput required></textarea>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+</div>

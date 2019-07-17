@@ -10,20 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class SignComponent implements OnInit {
 
-  public user: User = {
-    userId: 0,
-    userLastName: '',
-    userFirstName: '',
-    userMiddleName: '',
-    userMail: '',
-    userPhone: '',
-    userLogin: '',
-    userPassword: '',
-    userNickName: '',
-    userAdmin: false,
-    userStatusOfActivity: false
-  };
-
+  private user: User;
 
   private dataLoginPassword: string[] = ['', ''];
 
@@ -34,9 +21,10 @@ export class SignComponent implements OnInit {
       .subscribe(
         result => {
             if (result != null) {
-              this.user = result;
+              this.editUser(result);
               this.router.navigate(['/topics']);
             } else {
+              this.clearUser();
               this.router.navigate(['auth/autherr']);
             }
           },
@@ -49,6 +37,15 @@ export class SignComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.castUser.subscribe(user => this.user = user);
+  }
+
+  private editUser(newUser: User): void {
+    this.user = newUser;
+    this.userService.editUser(newUser);
+  }
+  private clearUser(): void {
+    this.userService.clearUser();
   }
 
 }

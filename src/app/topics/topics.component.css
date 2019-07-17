@@ -1,0 +1,36 @@
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar button {
+  width: 200px;
+  margin: 10px;
+}
+
+.TitleOfTopic {
+  width: 400px;
+  text-align: left;
+  font-size: 18px;
+  color: mediumblue;
+}
+
+.DescriptionOfTopicComment {
+  width: 700px;
+  text-align: left;
+  color: lightsteelblue;
+}
+
+.DescriptionOfTopicCreator {
+  width: 400px;
+  text-align: left;
+  color: lightsteelblue;
+}
+
+.mat-expansion-panel {
+  background-color: #F0F0FF;
+}
+
+.MatActionRowForTopic button{
+  width: 200px;
+  margin-left: 10px;
+}

@@ -1,0 +1,112 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>{{user.userNickName}}</div>
+  <div>
+    <button mat-stroked-button (click)="returnToTopics()">
+      Разделы
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="exitFromBlog()">
+      Выйти
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="InputFields">
+  <table>
+    <tr>
+      <td>
+        <div class="ButtonPanel">
+          <button mat-stroked-button (click)="addArticle()">Добавить статью <mat-icon>note_add</mat-icon></button>
+          <button mat-stroked-button (click)="returnToTopics()">Отмена <mat-icon>cancel</mat-icon></button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline" class="ArticleTitle">
+          <mat-label>Введите название статьи</mat-label>
+          <input [(ngModel)]="newArticle.articleTitle" matInput required/>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline" class="ArticleComment">
+          <mat-label>Введите комментарий</mat-label>
+          <textarea [(ngModel)]="newArticle.articleComment" matInput required></textarea>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline" class="ArticleContent">
+          <mat-label>Введите текст статьи</mat-label>
+          <textarea [(ngModel)]="newArticle.articleContent" matInput required></textarea>
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>Ключ для прав доступа: {{keyStringForRights}}</p>
+        <div class="RightsPanel">
+          <mat-form-field>
+            <mat-label>Права доступа для чтения</mat-label>
+            <mat-select [(value)]="readRightsValueSelected" multiple (selectionChange)="sumOfElements('r')">
+              <mat-option value="1">Для меня</mat-option>
+              <mat-option value="2">Для группы</mat-option>
+              <mat-option value="4">Для всех</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="readRightsValueSelectedSum == 2 ||
+                                 readRightsValueSelectedSum == 3 ||
+                                 readRightsValueSelectedSum == 6 ||
+                                 readRightsValueSelectedSum == 7">
+            <mat-label>Пользователи группы с правами доступа на чтение</mat-label>
+            <mat-select [(value)]="readRightsValueSelectedUsers" multiple>
+              <mat-option *ngFor="let singleUser of allUsers" value="{{singleUser.userId}}">{{singleUser.userNickName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="RightsPanel">
+          <mat-form-field>
+            <mat-label>Права доступа для редактирования</mat-label>
+            <mat-select [(value)]="writeRightsValueSelected" multiple (selectionChange)="sumOfElements('w')">
+              <mat-option value="1">Для меня</mat-option>
+              <mat-option value="2">Для группы</mat-option>
+              <mat-option value="4">Для всех</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="writeRightsValueSelectedSum == 2 ||
+                                 writeRightsValueSelectedSum == 3 ||
+                                 writeRightsValueSelectedSum == 6 ||
+                                 writeRightsValueSelectedSum == 7">
+            <mat-label>Пользователи группы с правами доступа на редактирование</mat-label>
+            <mat-select [(value)]="writeRightsValueSelectedUsers" multiple>
+              <mat-option *ngFor="let singleUser of allUsers" value="{{singleUser.userId}}">{{singleUser.userNickName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="RightsPanel">
+          <mat-form-field>
+            <mat-label>Права доступа для комментирования</mat-label>
+            <mat-select [(value)]="commentRightsValueSelected" multiple (selectionChange)="sumOfElements('c')">
+              <mat-option value="1">Для меня</mat-option>
+              <mat-option value="2">Для группы</mat-option>
+              <mat-option value="4">Для всех</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field *ngIf="commentRightsValueSelectedSum == 2 ||
+                                 commentRightsValueSelectedSum == 3 ||
+                                 commentRightsValueSelectedSum == 6 ||
+                                 commentRightsValueSelectedSum == 7">
+            <mat-label>Пользователи группы с правами доступа на комментирование</mat-label>
+            <mat-select [(value)]="commentRightsValueSelectedUsers" multiple>
+              <mat-option *ngFor="let singleUser of allUsers" value="{{singleUser.userId}}">{{singleUser.userNickName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

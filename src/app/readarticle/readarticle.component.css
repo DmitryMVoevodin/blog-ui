@@ -1,0 +1,35 @@
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar button {
+  width: 200px;
+  margin: 10px;
+}
+
+.ArticleHeaderAndContent {
+  padding: 100px;
+  padding-top: 10px;
+}
+
+.ArticleTitle {
+  font-size: 50px;
+  margin-bottom: 0px;
+}
+
+.ArticleAuthor {
+  color: lightsteelblue;
+  text-align: justify;
+}
+
+.ArticleComment {
+  color: lightsteelblue;
+  text-align: justify;
+}
+
+.ArticleContent {
+  padding-top: 30px;
+  text-align: justify;
+  color: black;
+  white-space: pre-line;
+}

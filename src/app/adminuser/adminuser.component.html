@@ -1,0 +1,38 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>{{user.userNickName}}</div>
+  <div>
+    <button mat-stroked-button (click)="returnToTopics()">
+      Разделы
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="exitFromBlog()">
+      Выйти
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="CardsWithUsers">
+  <mat-card *ngFor="let account of allAccounts">
+    <mat-card-title>
+      {{account.userId}}. {{account.userNickName}}
+    </mat-card-title>
+    <mat-card-content>
+      <p>ФИО: {{account.userLastName}} {{account.userFirstName}} {{account.userMiddleName}}</p>
+      <p>Email: {{account.userMail}}</p>
+      <p>Логин: {{account.userLogin}}</p>
+      <p>Пароль: {{account.userPassword}}</p>
+      <p>Тел.: {{account.userPhone}}</p>
+      <p *ngIf="account.userAdmin">Администратор: да</p>
+      <p *ngIf="!account.userAdmin">Администратор: нет</p>
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf="account.userAdmin == false">
+      <div>
+        <button mat-stroked-button (click)="deleteAccount(account)">
+          Удалить аккаунт
+          <mat-icon>block</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

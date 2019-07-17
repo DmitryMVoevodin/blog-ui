@@ -1,0 +1,25 @@
+<div class="Comments">
+
+  <div class="AddComment">
+    <p class="TitleComments">Комментарии:</p>
+    <div *ngIf="isCommentingAvailable || user.userAdmin">
+      <mat-form-field>
+        <textarea matInput [(ngModel)]="commentContent" placeholder="Добавить новый комментарий"></textarea>
+      </mat-form-field>
+      <button mat-flat-button (click)="addComment()">Добавить <mat-icon>comment</mat-icon></button>
+    </div>
+  </div>
+
+  <mat-card class="SingleComment" *ngFor="let comment of comments">
+    <mat-card-title>
+      {{comment.commentUserNickName}}
+    </mat-card-title>
+    <mat-card-content align class="CommentContent">
+      #{{comment.commentId}}: {{comment.commentContent}}
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf="comment.commentUserId == userId || user.userAdmin">
+      <button mat-flat-button class="DeleteComment" (click)="deleteCommentById(comment.commentId)">Удалить <mat-icon>delete</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

@@ -1,0 +1,5 @@
+<button mat-flat-button (click)="readArticle(article.articleTopic.topicId, article.articleId)">
+  Читать <mat-icon>library_books</mat-icon>
+</button>
+<button mat-flat-button *ngIf="isEditingAvailable || user.userAdmin" (click)="writeArticle()">Редактировать <mat-icon>edit</mat-icon></button>
+<button mat-flat-button *ngIf="article.articleCreator.userId == user.userId || user.userAdmin" (click)="deleteArticleById()">Удалить <mat-icon>delete</mat-icon></button>

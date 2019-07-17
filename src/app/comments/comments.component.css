@@ -1,0 +1,61 @@
+.Comments {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.SingleComment {
+  background-color: #FFFFAF;
+}
+
+.SingleComment button {
+  background-color: #FFFFAF;
+}
+
+.Comments mat-card-title {
+  font-size: 15px;
+}
+
+.SingleComment {
+  margin-bottom: 15px;
+}
+
+.DeleteComment {
+  font-size: 15px;
+}
+
+.AddComment {
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 50px;
+}
+
+.AddComment textarea {
+  height: 100px;
+  background: #e6e6ff;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.AddComment mat-form-field {
+  width: 40%;
+  height: 100px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.AddComment button {
+  color: mediumblue;
+  margin-left: 80px;
+  margin-bottom: 0px;
+}
+
+.TitleComments {
+  font-size: 30px;
+}
+
+.CommentContent {
+  white-space: pre-line;
+}

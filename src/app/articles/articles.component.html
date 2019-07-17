@@ -1,0 +1,14 @@
+<div class="CardsWithArticles">
+  <mat-card *ngFor="let article of articles">
+    <mat-card-title>
+      {{article.articleId}}. {{article.articleTitle}}
+    </mat-card-title>
+    <mat-card-content>
+      <p>Добавил: {{article.articleCreator.userNickName}}</p>
+      <p>{{article.articleComment}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <app-articlechangingpanel [user]="user" [topic]="article.articleTopic" [article]="article"></app-articlechangingpanel>
+    </mat-card-actions>
+  </mat-card>
+</div>

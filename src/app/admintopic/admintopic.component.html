@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>{{user.userNickName}}</div>
+  <div>
+    <button mat-stroked-button (click)="returnToTopics()">
+      Разделы
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="exitFromBlog()">
+      Выйти
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<div class="CardsWithTopics">
+  <mat-card *ngFor="let topic of topics">
+    <mat-card-title>
+      {{topic.topicId}}. {{topic.topicTitle}}
+    </mat-card-title>
+    <mat-card-content>
+      <p>Отправил на регистрацию: {{topic.topicCreator.userNickName}}</p>
+      <p>{{topic.topicComment}}</p>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <div>
+        <button mat-stroked-button (click)="acceptTopic(topic)">
+          Одобрить
+          <mat-icon>add</mat-icon>
+        </button>
+        <button mat-stroked-button (click)="refuseTopic(topic)">
+          Отклонить
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" class="navbar">
+  <div>{{user.userNickName}}</div>
+  <div>
+    <button mat-stroked-button (click)="returnToTopics()">
+      Разделы
+      <mat-icon>list</mat-icon>
+    </button>
+    <button mat-stroked-button (click)="exitFromBlog()">
+      Выйти
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<div class="mat-display-3">
+</div>
+
+<div class="ArticleHeaderAndContent">
+  <p class="ArticleTitle">{{article.articleTitle}}</p>
+  <p class="ArticleAuthor">Добавил: {{article.articleCreator.userNickName}}</p>
+  <p class="ArticleComment">{{article.articleComment}}</p>
+  <div class="ArticleContent">{{article.articleContent}}</div>
+</div>
+
+<div class="CommentsPart">
+  <app-comments
+    [topicId]="article.articleTopic.topicId"
+    [articleId]="article.articleId"
+    [userId]="user.userId"
+    [isCommentingAvailable]="isCommentingAvailable">
+  </app-comments>
+</div>

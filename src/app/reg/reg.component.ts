@@ -22,19 +22,7 @@ export class RegComponent implements OnInit {
     userNickNameValidation: ' '
   };
 
-  public user: User = {
-    userId: 0,
-    userLastName: '',
-    userFirstName: '',
-    userMiddleName: '',
-    userMail: '',
-    userPhone: '',
-    userLogin: '',
-    userPassword: '',
-    userNickName: '',
-    userAdmin: false,
-    userStatusOfActivity: false
-  };
+  public user: User;
 
   public registerAndEnterBlog(): void {
     if (this.checkValidation()) {
@@ -42,9 +30,10 @@ export class RegComponent implements OnInit {
         .subscribe(
           result => {
             if (result != null) {
-              this.user = result;
+              this.editUser(result);
               this.router.navigate(['/topics']);
             } else {
+              this.clearUser();
               this.router.navigate(['auth/autherr']);
             }
           },
@@ -56,6 +45,15 @@ export class RegComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.userService.castUser.subscribe(user => this.user = user);
+  }
+
+  private editUser(newUser: User): void {
+    this.user = newUser;
+    this.userService.editUser(newUser);
+  }
+  private clearUser(): void {
+    this.userService.clearUser();
   }
 
   private checkValidation(): boolean {
@@ -70,77 +68,92 @@ export class RegComponent implements OnInit {
     this.userV.userPasswordValidation = ' ';
     this.userV.userNickNameValidation = ' ';
 
-    //Проверка на пустые значения
+    //Фамилия
     if (this.user.userLastName.length == 0) {
       isValid = false;
       this.userV.userLastNameValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userLastName.length > 20) {
+      isValid = false;
+      this.userV.userLastNameValidation = 'Поле не должно быть > 20 символов!';
+    } else {
+      var regLastName = /[\,;":'a-zA-Zа-яА-Я]/;
+      if (!regLastName.test(this.user.userLastName)) {
+        isValid = false;
+        this.userV.userLastNameValidation = 'Фамилия введена некорректно!';
+      }
     }
+
+    //Имя
     if (this.user.userFirstName.length == 0) {
       isValid = false;
       this.userV.userFirstNameValidation = 'Значение не должно быть пустым!';
-    }
-    if (this.user.userMiddleName.length == 0) {
-      isValid = false;
-      this.userV.userMiddleNameValidation = 'Значение не должно быть пустым!';
-    }
-    if (this.user.userMail.length == 0) {
-      isValid = false;
-      this.userV.userMailValidation = 'Значение не должно быть пустым!';
-    }
-    if (this.user.userPhone.length == 0) {
-      isValid = false;
-      this.userV.userPhoneValidation = 'Значение не должно быть пустым!';
-    }
-    if (this.user.userLogin.length == 0) {
-      isValid = false;
-      this.userV.userLoginValidation = 'Значение не должно быть пустым!';
-    }
-    if (this.user.userPassword.length == 0) {
-      isValid = false;
-      this.userV.userPasswordValidation = 'Значение не должно быть пустым!';
-    }
-    if (this.user.userNickName.length == 0) {
-      isValid = false;
-      this.userV.userNickNameValidation = 'Значение не должно быть пустым!';
-    }
-
-    //Проверка строк на длину
-    if (this.user.userLastName.length > 20) {
-      isValid = false;
-      this.userV.userLastNameValidation = 'Поле не должно быть > 20 символов!';
-    }
-    if (this.user.userFirstName.length > 20) {
+    } else if (this.user.userFirstName.length > 20) {
       isValid = false;
       this.userV.userFirstNameValidation = 'Поле не должно быть > 20 символов!';
     }
-    if (this.user.userMiddleName.length > 20) {
+
+    //Отчество
+    if (this.user.userMiddleName.length == 0) {
+      isValid = false;
+      this.userV.userMiddleNameValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userMiddleName.length > 20) {
       isValid = false;
       this.userV.userMiddleNameValidation = 'Поле не должно быть > 20 символов!';
     }
-    if (this.user.userMail.length > 20) {
+
+    //E-mail
+    if (this.user.userMail.length == 0) {
+      isValid = false;
+      this.userV.userMailValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userMail.length > 20) {
       isValid = false;
       this.userV.userMailValidation = 'Поле не должно быть > 20 символов!';
+    } else {
+      var regMail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if (!regMail.test(this.user.userMail)) {
+        isValid = false;
+        this.userV.userMailValidation = 'Адрес введен некорректно!';
+      }
     }
-    if (this.user.userPhone.length > 20) {
+
+    //Телефон
+    if (this.user.userPhone.length == 0) {
+      isValid = false;
+      this.userV.userPhoneValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userPhone.length > 20) {
       isValid = false;
       this.userV.userPhoneValidation = 'Поле не должно быть > 20 символов!';
     }
-    if (this.user.userLogin.length > 20) {
+
+    //Логин
+    if (this.user.userLogin.length == 0) {
+      isValid = false;
+      this.userV.userLoginValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userLogin.length > 20) {
       isValid = false;
       this.userV.userLoginValidation = 'Поле не должно быть > 20 символов!';
     }
-    if (this.user.userPassword.length > 20) {
+
+    //Пароль
+    if (this.user.userPassword.length == 0) {
+      isValid = false;
+      this.userV.userPasswordValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userPassword.length > 20) {
       isValid = false;
       this.userV.userPasswordValidation = 'Поле не должно быть > 20 символов!';
     }
-    if (this.user.userNickName.length > 20) {
+
+    //Никнейм
+    if (this.user.userNickName.length == 0) {
+      isValid = false;
+      this.userV.userNickNameValidation = 'Значение не должно быть пустым!';
+    } else if (this.user.userNickName.length > 20) {
       isValid = false;
       this.userV.userNickNameValidation = 'Поле не должно быть > 20 символов!';
     }
 
-    //Проверка специфики рассматриваемых значений
-
     return isValid;
   }
+
 
 }

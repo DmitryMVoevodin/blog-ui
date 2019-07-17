@@ -1,0 +1,52 @@
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar button {
+  width: 200px;
+  margin: 10px;
+}
+
+.InputFields {
+  margin-top: 50px;
+  width: 100%;
+}
+
+.InputFields table {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.InputFields tr {
+  width: 100%;
+}
+
+.InputFields td {
+  width: 100%;
+}
+
+.TopicTitle {
+  width: 50%;
+}
+
+.TopicTitle input {
+  width: 100%;
+}
+
+.TopicComment {
+  width: 50%;
+}
+
+.TopicComment textarea {
+  width: 100%;
+  height: 100px;
+}
+
+.ButtonPanel {
+  margin-bottom: 30px;
+}
+
+.ButtonPanel button {
+  width: 200px;
+  margin-right: 10px;
+}
